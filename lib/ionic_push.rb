@@ -16,7 +16,7 @@ module IonicPush
 
   # API URL
   mattr_accessor :ionic_api_url
-  @@ionic_api_url = "https://api.ionic.io/push/notifications"
+  @@ionic_api_url = "https://api.ionic.io/push/notifications/"
 
   def self.setup
     yield self
