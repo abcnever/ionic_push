@@ -7,7 +7,7 @@ IonicPush is a Ruby gem that provides a simple to use interface with Ionic.io's 
 Add the following to your Gemfile and bundle install
 
 ```
-gem 'ionic_push', github: 'nwwatson/ionic_push', branch: 'master'
+gem 'ionic_push', github: 'abcnever/ionic_push', branch: 'master'
 ```
 
 Run the Rails generator to install the initializer in to your Rails project.
@@ -25,17 +25,19 @@ Configure the ionic_push.rb file within config/initializers. You can view the en
     # https://apps.ionic.io/apps
     config.ionic_application_id = ENV["IONIC_APPLICATION_ID"]
 
-    # ==> Configuration for the Private API Key
-    # The Private API Key for your application can be found
+    # ==> Configuration for the Ionic API Key
+    # The  API Key for your application can be found
     # within the Settings of your application on
     # https://apps.ionic.io/apps
-    config.ionic_api_key = ENV["IONIC_API_KEY"]
+    config.ionic_profile = ENV["IONIC_PROFILE"]
+
+    config.ionic_api_token = ENV["IONIC_API_TOKEN"]
 
     # ==> Configuration for the location of the API
     # Refer to the Ionic documentation for the correct location
     # Current documentation can be found here:
     # http://docs.ionic.io/docs/push-sending-push and
-    # defaults to https://push.ionic.io
+    # defaults to https://api.ionic.io/push/notifications
     # config.ionic_api_url = ENV["IONIC_API_URL"]
   end
 ```
@@ -52,7 +54,7 @@ device_tokens = [
 # Create a PushService instance for sending notifications
 # The constructor can take a hash of parameters including:
 #   device_tokens - An array of device tokens to push to
-#   message - a hash the represents the message to send  
+#   message - a hash the represents the message to send
 service = IonicPush::PushService.new(device_tokens: device_tokens)
 
 # Call the notify! method to send the push notification
