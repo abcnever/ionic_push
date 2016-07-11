@@ -13,7 +13,11 @@ module IonicPush
     end
 
     def notify!
-      self.class.post("/api/v1/push", payload)
+      self.class.post('', payload)
+    end
+
+    def check_status(message_id)
+      self.class.get("#{message_id}/messages", payload)
     end
 
     def alert!(msg)
@@ -31,22 +35,19 @@ module IonicPush
 
     def payload
       options = {}
-      options.merge!(body: body).merge!({ basic_auth: auth}).merge!({ headers: headers})
+      options.merge!(body: body).merge!({headers: headers})
     end
 
     private
 
-    def auth
-      { username: IonicPush.ionic_api_key }
-    end
-
     def headers
-      { 'Content-Type' => 'application/json', 'X-Ionic-Application-Id' => IonicPush.ionic_application_id }
+      { 'Content-Type' => 'application/json', 'Authorization' => "Bearer #{ IonicPush.ionic_api_token }" }
     end
 
     def body
       {
         tokens: @device_tokens,
+        profile: IonicPush.ionic_profile
         notification: @message
       }.to_json
     end

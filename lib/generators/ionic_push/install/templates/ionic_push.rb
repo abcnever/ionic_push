@@ -8,12 +8,14 @@ IonicPush.setup do |config|
   # The  API Key for your application can be found
   # within the Settings of your application on
   # https://apps.ionic.io/apps
-  config.ionic_api_key = ENV["IONIC_API_KEY"]
+  config.ionic_profile = ENV["IONIC_PROFILE"]
+
+  config.ionic_api_token = ENV["IONIC_API_TOKEN"]
 
   # ==> Configuration for the location of the API
   # Refer to the Ionic documentation for the correct location
   # Current documentation can be found here:
   # http://docs.ionic.io/docs/push-sending-push and
-  # defaults to https://push.ionic.io
+  # defaults to https://api.ionic.io/push/notifications
   # config.ionic_api_url = ENV["IONIC_API_URL"]
 end
