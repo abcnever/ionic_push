@@ -47,7 +47,7 @@ module IonicPush
     def body
       {
         tokens: @device_tokens,
-        profile: IonicPush.ionic_profile
+        profile: IonicPush.ionic_profile,
         notification: @message
       }.to_json
     end
